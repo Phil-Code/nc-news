@@ -1,12 +1,14 @@
+
+import { Link } from "react-router-dom"
 import { handlePrevNext } from "../utils"
 
 export default function ListArticles({articles, page, setPage}){
 
     return (
         <div>
-            {articles.map(({title, author, topic})=>{
+            {articles.map(({title, author, topic, article_id})=>{
               return <div key={title + author}>
-                        <h3>{title} -- by {author}</h3>
+                        <Link to={`/article/${article_id}`}><h3>{title} -- by {author}</h3></Link>
                         <p>{topic}</p>
                     </div>
             })}

@@ -11,6 +11,14 @@ export function fetchArticles(page=1, limit=5, topic){
     .catch(err=>console.log(err))
 }
 
+export function fetchSingleArticle(article_id){
+    return axios.get(`https://nc-news-qqh3.onrender.com/api/articles/${article_id}`)
+    .then((result)=>{
+        return result.data.article
+    })
+    .catch((err)=>console.log(err))
+}
+
 export function handlePrevNext(button, setPage){
     if (button === 'prev'){
         setPage((current)=>{
@@ -34,4 +42,19 @@ export function fetchTopics(){
 export function handleTopicClick(topic, setTopic, setPage){
     setTopic(topic);
     setPage(1)
+}
+
+export function handleLikes(article_id, operator, setLikes){
+   
+    if (operator === 'minus'){
+        setLikes((current)=>{
+            return --current;
+        })
+    } else (setLikes((current)=>{
+        return ++current
+    }))
+    return axios.patch(`https://nc-news-qqh3.onrender.com/api/articles/${article_id}`, {
+            "inc_votes": operator === 'minus' ? -1 : 1
+        })
+
 }

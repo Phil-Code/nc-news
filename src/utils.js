@@ -55,7 +55,7 @@ export function handleTopicClick(topic, setTopic, setPage){
     setPage(1)
 }
 
-export function handleLikes(id, operator, setLikes, patchingTo){
+export function handleLikes(id, operator, setLikes, patchingTo, setErr){
    
     let path = `/articles/${id}`;
     
@@ -72,6 +72,9 @@ export function handleLikes(id, operator, setLikes, patchingTo){
     }))
     return newsApi.patch(path, {
             "inc_votes": operator === 'minus' ? -1 : 1
+        })
+        .catch((err)=>{
+            setErr(err)
         })
 
 }

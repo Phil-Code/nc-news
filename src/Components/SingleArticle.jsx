@@ -2,6 +2,7 @@ import { useParams, Link } from 'react-router-dom';
 import { fetchSingleArticle } from '../utils';
 import { useEffect, useState } from 'react';
 import Voting from './Voting';
+import ArticleComments from './ArticleComments';
 
 export default function SingleArticle(){
    const [isLoading, setIsLoading] = useState(true) 
@@ -26,10 +27,9 @@ export default function SingleArticle(){
         <p>by {author}</p>
         <p>{body}</p>
         <img src={article_img_url}/>
-        <Link to={`/articles/${article_id}/comments`}>
-            <p>see what people are saying about this article ({comment_count} comments)</p>
-            </Link>
+        <h3>Do you like this article?</h3>
         <Voting id={article_id} votes={votes} patchingTo={'articles'}/>
+        <ArticleComments />
     </div>
    )
 }

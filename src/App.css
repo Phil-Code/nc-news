@@ -5,3 +5,28 @@
   text-align: center;
 }
 
+.button{
+  min-width: 75px;
+  max-height: 50px;
+  margin: 0 10px;
+  border-radius: 10%;
+}
+
+.button:hover{
+  box-shadow: slategray 10px 10px 10px;
+  cursor: pointer;
+}
+
+.vote-button-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+
+.vote-display{
+  border-bottom: 2px solid gray;
+  padding: 0 15px;
+  margin: 5px;
+}
+

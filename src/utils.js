@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { Axios } from "axios";
 
 const newsApi = axios.create({
     baseURL: 'https://nc-news-qqh3.onrender.com/api'
@@ -21,6 +21,13 @@ export function fetchSingleArticle(article_id){
         return result.data.article
     })
     .catch((err)=>console.log(err))
+}
+
+export function fetchArticleComments(article_id){
+    return newsApi.get(`articles/${article_id}/comments`)
+    .then((result)=>{
+        return result.data.comments
+    })
 }
 
 export function handlePrevNext(button, setPage){
@@ -48,8 +55,14 @@ export function handleTopicClick(topic, setTopic, setPage){
     setPage(1)
 }
 
-export function handleLikes(article_id, operator, setLikes){
+export function handleLikes(id, operator, setLikes, patchingTo){
    
+    let path = `/articles/${id}`;
+    
+    if (patchingTo === 'comments'){
+        path = `/comments/${id}`
+    }
+
     if (operator === 'minus'){
         setLikes((current)=>{
             return --current;
@@ -57,7 +70,7 @@ export function handleLikes(article_id, operator, setLikes){
     } else (setLikes((current)=>{
         return ++current
     }))
-    return newsApi.patch(`/articles/${article_id}`, {
+    return newsApi.patch(path, {
             "inc_votes": operator === 'minus' ? -1 : 1
         })
 

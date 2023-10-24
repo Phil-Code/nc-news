@@ -12,8 +12,8 @@ export default function ListArticles({articles, page, setPage}){
                         <p>{topic}</p>
                     </div>
             })}
-            <button onClick={()=>handlePrevNext('prev', setPage)} disabled={page <= 1} className="prev-articles">prev</button>
-            <button onClick={()=>handlePrevNext('next', setPage)} disabled={page >= articles[0].total_count / 5} className="next-articles">next</button>
+            <button className='button nav-button' onClick={()=>handlePrevNext('prev', setPage)} disabled={page <= 1}>prev</button>
+            <button className='button nav-button'  onClick={()=>handlePrevNext('next', setPage)} disabled={page >= articles[0].total_count / 5}>next</button>
         </div>
     )
 }

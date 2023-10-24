@@ -1,12 +1,12 @@
-import { useParams } from 'react-router-dom';
-import { fetchSingleArticle, handleLikes } from '../utils';
+import { useParams, Link } from 'react-router-dom';
+import { fetchSingleArticle } from '../utils';
 import { useEffect, useState } from 'react';
+import Voting from './Voting';
 
 export default function SingleArticle(){
    const [isLoading, setIsLoading] = useState(true) 
    const {article_id} = useParams() 
    const [article, setArticle] = useState({})
-   const [likes, setLikes] = useState(0)
 
    const {title, author, article_img_url, body, votes, comment_count} = article
    
@@ -26,10 +26,10 @@ export default function SingleArticle(){
         <p>by {author}</p>
         <p>{body}</p>
         <img src={article_img_url}/>
-        <p>see what people are saying about this article ({comment_count} comments)</p>
-        <button disabled={likes < 0} onClick={()=>handleLikes(article_id, 'minus', setLikes)}>don't like</button>
-        <p>{likes + votes}</p>
-        <button disabled={likes > 0} onClick={()=>handleLikes(article_id, 'plus', setLikes)}>like</button>
+        <Link to={`/articles/${article_id}/comments`}>
+            <p>see what people are saying about this article ({comment_count} comments)</p>
+            </Link>
+        <Voting id={article_id} votes={votes} patchingTo={'articles'}/>
     </div>
    )
 }

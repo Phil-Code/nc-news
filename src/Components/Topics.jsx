@@ -21,7 +21,7 @@ export default function Topics({setTopic, setArticles, setPage}){
     const colours = [ 'white', 'skyblue', 'lightgreen', 'lemonchiffon', 'pink', 'lavender', 'linen', 'peachpuff']
    
     return (
-        <div>
+        <div className="topic-container">
             {topics.map((topic)=>{
                 return <button className="button topic-button" style={{'backgroundColor': colours.shift()}} key={topic} onClick={()=>handleTopicClick(topic, setTopic, setPage)}>{topic}</button>
             })}

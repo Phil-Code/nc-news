@@ -8,7 +8,7 @@ export default function ListArticles({articles, page, setPage}){
         <div>
             {articles.map(({title, author, topic, article_id})=>{
               return <div key={title + author}>
-                        <Link to={`/article/${article_id}`}><h3>{title} -- by {author}</h3></Link>
+                        <Link to={`/articles/${article_id}`}><h3>{title} -- by {author}</h3></Link>
                         <p>{topic}</p>
                     </div>
             })}

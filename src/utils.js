@@ -1,18 +1,22 @@
 import axios from "axios";
 
+const newsApi = axios.create({
+    baseURL: 'https://nc-news-qqh3.onrender.com/api'
+  });
+
 export function fetchArticles(page=1, limit=5, topic){
 
-    let path = `https://nc-news-qqh3.onrender.com/api/articles?limit=${limit}&&p=${page}`
+    let path = `/articles?limit=${limit}&&p=${page}`
     if (topic !== 'all'){
         path += `&&topic=${topic}`
     }  
-    return axios.get(path)
+    return newsApi.get(path)
     .then((result)=>{return result.data.articles})
     .catch(err=>console.log(err))
 }
 
 export function fetchSingleArticle(article_id){
-    return axios.get(`https://nc-news-qqh3.onrender.com/api/articles/${article_id}`)
+    return newsApi.get(`/articles/${article_id}`)
     .then((result)=>{
         return result.data.article
     })
@@ -34,7 +38,7 @@ export function handlePrevNext(button, setPage){
 }
 
 export function fetchTopics(){
-    return axios.get('https://nc-news-qqh3.onrender.com/api/topics')
+    return newsApi.get('/topics')
     .then((result)=>{return result.data.topics})
     .catch(err=>console.log(err))
 }
@@ -53,7 +57,7 @@ export function handleLikes(article_id, operator, setLikes){
     } else (setLikes((current)=>{
         return ++current
     }))
-    return axios.patch(`https://nc-news-qqh3.onrender.com/api/articles/${article_id}`, {
+    return newsApi.patch(`/articles/${article_id}`, {
             "inc_votes": operator === 'minus' ? -1 : 1
         })
 

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { fetchUsers, postComment } from "../utils";
 
-export default function PostComment({setIsPosting}){
+export default function PostComment({setIsPosting, setComments}){
 
     const {article_id} = useParams()
     const [name, setName] = useState('')
@@ -24,15 +24,17 @@ export default function PostComment({setIsPosting}){
 
     function handleSubmit(e){
         e.preventDefault()
-        
+
         if (isValidName && isValidComment){
-            postComment(article_id, {"username": name, "body": body})
+            setComments((current)=>{
+                return [{"author": name, "body": body, "votes": 0, newComment: '3px solid green'}, ...current]
+            })
             setName('')
             setBody('')
             setIsPosting(false)
-        } 
+            postComment(article_id, {"username": name, "body": body})        
+        }
     }
-
     function handleNameChange(e){
         setName(e.target.value)
         if (users.includes(e.target.value)){
@@ -46,7 +48,7 @@ export default function PostComment({setIsPosting}){
             setIsValidComment(true)
         } else (setIsValidComment(false))
     }
-
+    
     return (
         <form onSubmit={handleSubmit} className="comment-form">
             <div className="name-input">
@@ -63,7 +65,10 @@ export default function PostComment({setIsPosting}){
             <div className="comment-feedback">
                 {isValidComment ? '' : <p>please write a longer comment</p>}
             </div>
-            <button type='submit' className="button submit-button">post comment</button>
+            <div className="button-container">
+              <button type='submit' className="button submit-button">post comment</button>
+              <button className="button cancel-submit" onClick={()=>setIsPosting(false)}>Cancel</button>
+            </div>
         </form>
     )
 }

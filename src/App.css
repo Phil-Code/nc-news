@@ -51,3 +51,50 @@
 .article-card{
   border-top: 2px dashed black;
 }
+
+.comment-form{
+  display: flex;
+  flex-direction: column;
+  width: 75%;
+  margin: auto;
+}
+.name-input{
+  display: grid;
+  grid-template-columns: 20% auto;
+  margin: 20px 0;
+  
+}
+.comment-input{
+  display: grid;
+  grid-template-columns: 20% auto;
+  height: 100px;
+  margin: 20px 0;
+}
+.submit-button{
+  width: 50%;
+  align-self: center;
+  min-height: 30px;
+  border-radius: 5px;
+  margin-top: 30px
+}
+
+.name-feedback{
+  height: 15px;
+}
+.name-feedback > p{
+  background-color: pink;
+  width: 50%;
+  align-self: center;
+  margin: auto
+}
+
+.comment-feedback{
+  height: 15px;
+}
+
+.comment-feedback > p{
+  background-color: pink;
+  width: 50%;
+  align-self: center;
+  margin: auto
+}

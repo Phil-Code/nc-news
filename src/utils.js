@@ -78,3 +78,15 @@ export function handleLikes(id, operator, setLikes, patchingTo, setErr){
         })
 
 }
+
+export function postComment(article_id, comment){
+    return newsApi.post(`/articles/${article_id}/comments`, comment)
+    .then((response)=>{console.log(response)})
+}
+
+export function fetchUsers(){
+    return newsApi.get('/users')
+    .then((result)=>{
+        return result.data.users
+    })
+}

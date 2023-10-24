@@ -23,7 +23,6 @@ export default function Home(){
 
     return (
         <div>
-            <TopicLinks setTopic={setTopic} setPage={setPage}/>
             <ListArticles articles={articles} page={page} setPage={setPage}/>
         </div>
     )

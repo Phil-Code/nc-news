@@ -44,7 +44,7 @@ export default function PostComment({setIsPosting, setComments}){
 
     function handleBodyChange(e){
         setBody(e.target.value)
-        if (e.target.value.split(' ').length > 5){
+        if (e.target.value.split(' ').length >= 5){
             setIsValidComment(true)
         } else (setIsValidComment(false))
     }

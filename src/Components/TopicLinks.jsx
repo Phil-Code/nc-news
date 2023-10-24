@@ -24,7 +24,7 @@ export default function TopicLinks(){
     return (
         <h2 className="topic-container">
             {topics.map((topic)=>{
-                return <Link className="topic-link" key={topic} to={`/topic/${topic}`}>{topic}</Link>
+                return <Link style={{"backgroundColor": colours.shift()}} className="topic-link" key={topic} to={`/topic/${topic}`}>{topic}</Link>
             })}
         </h2>
     )

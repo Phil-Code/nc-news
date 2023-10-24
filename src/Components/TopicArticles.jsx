@@ -23,7 +23,6 @@ export default function TopicArticles(){
 
     return (
         <div>
-            <h2>{topic}</h2>
             <ListArticles articles={articles} page={page} setPage={setPage}/>
         </div>
     )

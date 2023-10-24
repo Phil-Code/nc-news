@@ -8,6 +8,9 @@
 .topic-container{
   margin-bottom: 25px;
 }
+.topic-link{
+  margin: 0 15px;
+}
 
 .button{
   min-width: 75px;

@@ -3,7 +3,7 @@ import './App.css'
 import Home from './Components/Home'
 import SingleArticle from './Components/SingleArticle'
 import NavBar from './Components/NavBar'
-import PostComment from './Components/PostComment'
+import TopicArticles from './Components/TopicArticles'
 
 function App() {
   
@@ -16,6 +16,7 @@ function App() {
             <Routes>
               <Route path='/' element={<Home/>}/>
               <Route path='/articles/:article_id' element={<SingleArticle/>}/>
+              <Route path='/topic/:topic' element={<TopicArticles/>}/>
             </Routes>
           </main>
           </>

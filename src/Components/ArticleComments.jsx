@@ -25,7 +25,7 @@ export default function ArticleComments(){
         <div className="comments-list">
             <h4>Comments</h4>
             {comments.map(({author, votes, body, comment_id})=>{
-                return <div key={body} className="comment-card">
+                return <div key={body + comment_id} className="comment-card">
                         <p>{body}</p>
                         <p>Do you like this comment by <strong>{author}</strong>?</p>
                         <Voting  id={comment_id} votes={votes} patchingTo={'comments'}/>

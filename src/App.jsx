@@ -3,6 +3,7 @@ import './App.css'
 import Home from './Components/Home'
 import SingleArticle from './Components/SingleArticle'
 import NavBar from './Components/NavBar'
+import PostComment from './Components/PostComment'
 
 function App() {
   

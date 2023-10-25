@@ -81,7 +81,6 @@ export function handleLikes(id, operator, setLikes, patchingTo, setErr){
 
 export function postComment(article_id, comment){
     return newsApi.post(`/articles/${article_id}/comments`, comment)
-    .then((response)=>{console.log(response)})
 }
 
 export function fetchUsers(){
@@ -89,4 +88,13 @@ export function fetchUsers(){
     .then((result)=>{
         return result.data.users
     })
+}
+
+export function getTopicColours(topic){
+    const colours = {
+        coding: 'skyblue',
+        football: 'lightgreen', 
+        cooking: 'lemonchiffon',
+    }
+    return colours[topic]
 }

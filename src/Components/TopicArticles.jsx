@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react"
 import { fetchArticles } from "../utils"
-import TopicLinks from "./TopicLinks"
 import ListArticles from "./ListArticles"
+import { useParams } from "react-router-dom"
 
-export default function Home(){
+export default function TopicArticles(){
 
     const [articles, setArticles] = useState([])
     const [page, setPage] = useState(1)
-    const [topic, setTopic] = useState('all')
     const [isLoading, setIsLoading] = useState(true)
+    const {topic} = useParams()
 
     useEffect(()=>{
         fetchArticles(page, 5, topic)

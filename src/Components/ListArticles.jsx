@@ -1,6 +1,6 @@
 
 import { Link } from "react-router-dom"
-import { handlePrevNext } from "../utils"
+import { handlePrevNext, getTopicColours } from "../utils"
 
 export default function ListArticles({articles, page, setPage}){
 
@@ -9,7 +9,7 @@ export default function ListArticles({articles, page, setPage}){
             {articles.map(({title, author, topic, article_id, comment_count})=>{
               return <div key={title + author} className="article-card">
                         <Link to={`/articles/${article_id}`}><h3>{title} -- by {author}</h3></Link>
-                        <p>{topic} -- comments {comment_count}</p>
+                        <p><Link style={{"backgroundColor": getTopicColours(topic)}} className="topic-link" to={`/topic/${topic}`}>{topic}</Link> -- comments {comment_count}</p>
                     </div>
             })}
             <button className='button nav-button' onClick={()=>handlePrevNext('prev', setPage)} disabled={page <= 1}>prev</button>

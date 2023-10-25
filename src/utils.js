@@ -89,3 +89,12 @@ export function fetchUsers(){
         return result.data.users
     })
 }
+
+export function getTopicColours(topic){
+    const colours = {
+        coding: 'skyblue',
+        football: 'lightgreen', 
+        cooking: 'lemonchiffon',
+    }
+    return colours[topic]
+}

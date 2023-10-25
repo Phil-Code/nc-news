@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { fetchUsers, postComment } from "../utils";
 
-export default function PostComment({setIsPosting, setComments}){
+export default function PostComment({setIsPosting, setComments, setPostingErr }){
 
     const {article_id} = useParams()
     const [name, setName] = useState('')
@@ -24,15 +24,19 @@ export default function PostComment({setIsPosting, setComments}){
 
     function handleSubmit(e){
         e.preventDefault()
-
+        setPostingErr(false)
         if (isValidName && isValidComment){
             setComments((current)=>{
-                return [{"author": name, "body": body, "votes": 0, newComment: '3px solid green'}, ...current]
+                return [{"author": name, "body": body, "votes": 0, newComment: true}, ...current]
             })
             setName('')
             setBody('')
             setIsPosting(false)
-            postComment(article_id, {"username": name, "body": body})        
+            postComment(article_id, {"username": name, "body": body})
+            .catch(()=>{
+                setIsPosting(true)
+                setPostingErr(true)
+            })        
         }
     }
     function handleNameChange(e){
@@ -48,7 +52,6 @@ export default function PostComment({setIsPosting, setComments}){
             setIsValidComment(true)
         } else (setIsValidComment(false))
     }
-    
     return (
         <form onSubmit={handleSubmit} className="comment-form">
             <div className="name-input">

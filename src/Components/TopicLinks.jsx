@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { fetchTopics } from "../utils";
+import { fetchTopics, getTopicColours } from "../utils";
 import { Link } from "react-router-dom";
 
 export default function TopicLinks(){
@@ -18,13 +18,11 @@ export default function TopicLinks(){
             })
         })
     }, [])
-
-    const colours = [ 'skyblue', 'lightgreen', 'lemonchiffon', 'pink', 'lavender', 'linen', 'peachpuff']
    
     return (
         <h2 className="topic-container">
             {topics.map((topic)=>{
-                return <Link style={{"backgroundColor": colours.shift()}} className="topic-link" key={topic} to={`/topic/${topic}`}>{topic}</Link>
+                return <Link style={{"backgroundColor": getTopicColours(topic)}} className="topic-link" key={topic} to={`/topic/${topic}`}>{topic}</Link>
             })}
         </h2>
     )

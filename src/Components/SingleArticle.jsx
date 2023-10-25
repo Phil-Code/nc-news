@@ -10,6 +10,7 @@ export default function SingleArticle(){
    const {article_id} = useParams() 
    const [article, setArticle] = useState({})
    
+   
 
    const {title, author, article_img_url, body, votes} = article
    

@@ -4,9 +4,9 @@ const newsApi = axios.create({
     baseURL: 'https://nc-news-qqh3.onrender.com/api'
   });
 
-export function fetchArticles(page=1, limit=5, topic){
+export function fetchArticles(page=1, limit=5, topic, order='desc', sortBy='created_at'){
 
-    let path = `/articles?limit=${limit}&&p=${page}`
+    let path = `/articles?limit=${limit}&&p=${page}&&order=${order}&&sort_by=${sortBy}`
     if (topic !== 'all'){
         path += `&&topic=${topic}`
     }  

@@ -1,16 +1,13 @@
-import axios, { Axios } from "axios";
+import axios from "axios";
 
 const newsApi = axios.create({
     baseURL: 'https://nc-news-qqh3.onrender.com/api'
   });
 
-export function fetchArticles(page=1, limit=5, topic){
+export function fetchArticles(page, limit, topic, order, sortBy){
+    const params = {p: page || 1, limit: limit || 5, topic, order: order || 'desc', sort_by: sortBy || 'created_at'}
 
-    let path = `/articles?limit=${limit}&&p=${page}`
-    if (topic !== 'all'){
-        path += `&&topic=${topic}`
-    }  
-    return newsApi.get(path)
+    return newsApi.get('articles', {params})
     .then((result)=>{return result.data.articles})
     .catch(err=>console.log(err))
 }
@@ -28,20 +25,6 @@ export function fetchArticleComments(article_id){
     .then((result)=>{
         return result.data.comments
     })
-}
-
-export function handlePrevNext(button, setPage){
-    if (button === 'prev'){
-        setPage((current)=>{
-            if (current > 1){
-                return current - 1
-            } else return 1;
-        })
-    } else {
-        setPage((current)=>{
-            return current + 1
-        })
-    }
 }
 
 export function fetchTopics(){

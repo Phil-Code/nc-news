@@ -3,11 +3,13 @@ import { fetchArticles } from "../utils"
 import ListArticles from "./ListArticles"
 import { useSearchParams } from 'react-router-dom';
 import TopicLinks from './TopicLinks'
+import ErrorPage from "./ErrorPage";
 
 export default function Home(){
     const [searchParams, setSearchParams] = useSearchParams();
     const [articles, setArticles] = useState([])
     const [isLoading, setIsLoading] = useState(true)
+    const [isErr, setIsErr] = useState(false)
 
     const sortBy = searchParams.get('sort_by')
     const page = searchParams.get('page')
@@ -26,14 +28,18 @@ export default function Home(){
         .then((result)=>{
             setArticles(result);
             setIsLoading(false);
-            
+            setIsErr(false)
+        })
+        .catch((err)=>{
+            setIsErr(true)
+            setIsLoading(false)
         })
     }, [page, sortBy, order, topic])
 
 
 
     if (isLoading)return <p>loading...</p>
-    
+    if (isErr)return <ErrorPage/>
     return (
         <div>
             <TopicLinks/>

@@ -3,15 +3,14 @@ import { fetchSingleArticle } from '../utils';
 import { useEffect, useState } from 'react';
 import Voting from './Voting';
 import ArticleComments from './ArticleComments';
-
+import ErrorPage from './ErrorPage';
 
 export default function SingleArticle(){
    const [isLoading, setIsLoading] = useState(true) 
    const {article_id} = useParams() 
    const [article, setArticle] = useState({})
+   const [isErr, setisErr] = useState(false)
    
-   
-
    const {title, author, article_img_url, body, votes} = article
    
    useEffect(()=>{
@@ -19,11 +18,17 @@ export default function SingleArticle(){
     .then((result)=>{
         setArticle(result)
         setIsLoading(false)
+        setisErr(false)
+    })
+    .catch(()=>{
+        setisErr(true)
+        setIsLoading(false)
     })
    }, [article_id])
-
+   
    if (isLoading)return <p>loading...</p>
- 
+   if (isErr)return <ErrorPage/>
+
    return (
     <div>
         <h2>{title}</h2>

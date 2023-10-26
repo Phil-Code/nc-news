@@ -9,7 +9,6 @@ export function fetchArticles(page, limit, topic, order, sortBy){
 
     return newsApi.get('articles', {params})
     .then((result)=>{return result.data.articles})
-    .catch(err=>console.log(err))
 }
 
 export function fetchSingleArticle(article_id){
@@ -17,7 +16,6 @@ export function fetchSingleArticle(article_id){
     .then((result)=>{
         return result.data.article
     })
-    .catch((err)=>console.log(err))
 }
 
 export function fetchArticleComments(article_id){
@@ -30,7 +28,6 @@ export function fetchArticleComments(article_id){
 export function fetchTopics(){
     return newsApi.get('/topics')
     .then((result)=>{return result.data.topics})
-    .catch(err=>console.log(err))
 }
 
 export function handleTopicClick(topic, setTopic, setPage){

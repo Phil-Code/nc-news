@@ -6,26 +6,36 @@ import { useSearchParams } from 'react-router-dom';
 export default function Home(){
     const [searchParams, setSearchParams] = useSearchParams();
     const [articles, setArticles] = useState([])
-    const [page, setPage] = useState(1)
-    const [topic, setTopic] = useState('all')
     const [isLoading, setIsLoading] = useState(true)
-    const [order, setOrder] = useState('desc')
-    const [sortBy, setSortBy] = useState('created_at')
+
+    const sortBy = searchParams.get('sort_by')
+    const page = searchParams.get('page')
+    const order = searchParams.get('order')
+    const topic = searchParams.get('topic')
 
     useEffect(()=>{
+        if (!page){
+            const newParams = new URLSearchParams(searchParams)
+            newParams.set('page', 1)
+            newParams.set('sort_by', 'created_at')
+            newParams.set('order', 'desc')
+            setSearchParams(newParams)
+        }
         fetchArticles(page, 5, topic, order, sortBy)
         .then((result)=>{
             setArticles(result);
             setIsLoading(false);
             
         })
-    }, [page, topic, order, sortBy, searchParams])
+    }, [page, sortBy, order, topic])
+
+
 
     if (isLoading)return <p>loading...</p>
-    console.log(page)
+    
     return (
         <div>
-            <ListArticles setSortBy={setSortBy} order={order} setOrder={setOrder} articles={articles} page={page} setPage={setPage}/>
+            <ListArticles  articles={articles}/>
         </div>
     )
 }

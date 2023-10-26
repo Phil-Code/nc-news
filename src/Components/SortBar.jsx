@@ -1,20 +1,26 @@
 import { useSearchParams } from 'react-router-dom';
 
-export default function SortBar({order, setOrder, setSortBy}){
+export default function SortBar(){
 
     const [searchParams, setSearchParams] = useSearchParams();
+    const order = searchParams.get('order') || 'desc'
+    const newParams = new URLSearchParams(searchParams);
+
     function handleFlip(){
-        setOrder((current)=>{
-            if (current === 'desc'){
-                return 'asc'
-            } else return 'desc'
-        })
+        if (order === 'desc'){
+           
+            newParams.set('order', 'asc')     
+        } else {
+            newParams.set('order', 'desc')
+        }
+        newParams.set('page', 1)
+        setSearchParams(newParams)
     }
     function handleSort(e){
-        const newParams = new URLSearchParams(searchParams);
+        newParams.set('page', 1)
         newParams.set('sort_by', e.target.value);
+        newParams.set('order', 'desc')
         setSearchParams(newParams);
-        setSortBy(e.target.value)
     }
     return (
         <div className="sort-container">

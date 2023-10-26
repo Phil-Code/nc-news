@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { fetchArticles } from "../utils"
 import ListArticles from "./ListArticles"
 import { useSearchParams } from 'react-router-dom';
+import TopicLinks from './TopicLinks'
 
 export default function Home(){
     const [searchParams, setSearchParams] = useSearchParams();
@@ -35,6 +36,7 @@ export default function Home(){
     
     return (
         <div>
+            <TopicLinks/>
             <ListArticles  articles={articles}/>
         </div>
     )

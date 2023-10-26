@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import TopicLinks from "./TopicLinks"
+import LoginBar from "./LoginBar"
 
 export default function NavBar(){
 
@@ -8,7 +8,7 @@ export default function NavBar(){
             <Link to='/'>
                 <h1>NC News</h1>
             </Link>
-            <TopicLinks/>
+            <LoginBar/>
         </div>
     )
 }

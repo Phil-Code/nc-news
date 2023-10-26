@@ -1,8 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { fetchUsers, postComment } from "../utils";
+import LoginBar from "./LoginBar";
+import { LoginContext } from "./Contexts/LoginContext";
 
-export default function PostComment({setIsPosting, setComments, setPostingErr }){
+export default function PostComment({setIsPosting, setComments, setPostingErr, setCommentCount }){
 
     const {article_id} = useParams()
     const [name, setName] = useState('')
@@ -10,6 +12,7 @@ export default function PostComment({setIsPosting, setComments, setPostingErr })
     const [isValidName, setIsValidName] = useState(false)
     const [isValidComment, setIsValidComment] = useState(false)
     const [users, setUsers] = useState([])
+    const {login, setLogin} = useContext(LoginContext)
 
     useEffect(()=>{
         fetchUsers()
@@ -27,15 +30,26 @@ export default function PostComment({setIsPosting, setComments, setPostingErr })
         setPostingErr(false)
         if (isValidName && isValidComment){
             setComments((current)=>{
-                return [{"author": name, "body": body, "votes": 0, newComment: true}, ...current]
+                return [{"author": name, "body": body, "votes": 0, newPost: true}, ...current]
             })
             setName('')
             setBody('')
             setIsPosting(false)
             postComment(article_id, {"username": name, "body": body})
+            .then(()=>{
+                setCommentCount((current)=>{
+                    return current + 1
+                })
+            })
             .catch(()=>{
                 setIsPosting(true)
                 setPostingErr(true)
+                setComments((current)=>{
+                    const updated = current.filter((comment)=>{
+                        return !comment.newPost
+                    })
+                    return [...updated]
+                })
             })        
         }
     }
@@ -52,6 +66,14 @@ export default function PostComment({setIsPosting, setComments, setPostingErr })
             setIsValidComment(true)
         } else (setIsValidComment(false))
     }
+
+    if (login === 'Guest'){
+        return  <div>
+            <p>you must be logged in to add a comment</p>
+            <LoginBar/>
+        </div>
+       
+}
     return (
         <form onSubmit={handleSubmit} className="comment-form">
             <div className="name-input">

@@ -2,6 +2,7 @@
 import { Link, useSearchParams } from "react-router-dom"
 import { getTopicColours } from "../utils"
 import SortBar from "./SortBar"
+import TopicButton from './TopicButton'
 
 export default function ListArticles({articles}){
 
@@ -26,7 +27,7 @@ export default function ListArticles({articles}){
             {articles.map(({title, author, topic, article_id, comment_count, votes})=>{
               return <div key={title + author} className="article-card">
                         <Link to={`/articles/${article_id}`}><h3>{title} -- by {author}</h3></Link>
-                        <p><Link style={{"backgroundColor": getTopicColours(topic)}} className="topic-link" to={`/topic/${topic}`}>{topic}</Link>{votes} votes and {comment_count} comments</p>
+                        <p><TopicButton topic={topic}>{topic}</TopicButton>{votes} votes and {comment_count} comments</p>
                     </div>
             })}
             <button className='button nav-button' onClick={()=>handlePrevNext('prev')} disabled={page <= 1}>prev</button>

@@ -1,17 +1,11 @@
 import { useEffect, useState } from "react";
-import { fetchTopics, getTopicColours } from "../utils";
-import { useSearchParams } from "react-router-dom";
+import { fetchTopics } from "../utils";
+import TopicButton from './TopicButton'
 
 export default function TopicLinks(){
 
     const [topics, setTopics] = useState([])
-    const [searchParams, setSearchParams] = useSearchParams()
-
-    function handleTopicClick(e){
-    const newParams = new URLSearchParams(searchParams)
-    newParams.set('topic', e.target.value)
-    setSearchParams(newParams)
-    }
+  
 
     useEffect(()=>{
         fetchTopics()
@@ -29,7 +23,7 @@ export default function TopicLinks(){
     return (
         <h2 className="topic-container">
             {topics.map((topic)=>{
-                return <button value={topic} style={{"backgroundColor": getTopicColours(topic)}} className="button topic-link" key={topic} onClick={handleTopicClick}>{topic}</button>
+                return <TopicButton key={topic} topic={topic}/>
             })}
         </h2>
     )

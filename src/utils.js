@@ -81,3 +81,7 @@ export function getTopicColours(topic){
     }
     return colours[topic]
 }
+
+export function deleteComment(comment_id){
+    return newsApi.delete(`/comments/${comment_id}`)
+}

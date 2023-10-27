@@ -1,8 +1,40 @@
-# React + Vite
+# nc-news
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+nc-news is a React app built on top of a back-end news api project. The app is hosted on Netlify.
 
-Currently, two official plugins are available:
+# url to a working example of the app
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+https://github.com/Phil-Code/be-nc-news 
+
+# GitHub links for borth parts of the project
+
+front-end (this app): https://github.com/Phil-Code/nc-news
+back-end (the api): https://github.com/Phil-Code/be-nc-news
+
+# features of nc-news
+
+users can login if a valid username is provided
+articles can be filtered by topic
+articles can be sorted by category 
+sort order can be toggled
+articles are paginated
+guests can vote on articles and comments
+logged in users can add comments to articles and delete their own comments
+voting, posting and deleting actions are rendered optimistically
+
+# installation
+
+to install nc-news:
+
+clone the code from this GitHub repository - https://github.com/Phil-Code/nc-news 
+
+Then, in the terminal, cd into the top level of the cloned directory and run the following to install the required dependencies:
+
+npm install 
+npm run dev
+
+You will then be able to view a working version of the site locally on your machine.
+
+# required versions
+
+Node.js v20.3.1

@@ -1,6 +1,5 @@
 
 import { Link, useSearchParams } from "react-router-dom"
-import { getTopicColours } from "../utils"
 import SortBar from "./SortBar"
 import TopicButton from './TopicButton'
 
@@ -24,12 +23,18 @@ export default function ListArticles({articles}){
     return (
         <div>
             <SortBar/>
-            {articles.map(({title, author, topic, article_id, comment_count, votes})=>{
+            <div className="articles-container">
+            {articles.map(({title, author, topic, article_id, comment_count, votes, article_img_url})=>{
               return <div key={title + author} className="article-card">
-                        <Link to={`/articles/${article_id}`}><h3>{title} -- by {author}</h3></Link>
-                        <p><TopicButton topic={topic}>{topic}</TopicButton>{votes} votes and {comment_count} comments</p>
+                        <Link to={`/articles/${article_id}`}><img className='article-img' src={article_img_url}/></Link>
+                        <p className="article-topic"><TopicButton topic={topic}>{topic}</TopicButton></p>
+                        <div className="article-card-content">
+                        <Link className="article-title" to={`/articles/${article_id}`}>{title}</Link>
+                        <p className="vote-comment">{votes} votes and {comment_count} comments</p>
+                        </div>
                     </div>
             })}
+            </div>
             <button className='button nav-button' onClick={()=>handlePrevNext('prev')} disabled={page <= 1}>prev</button>
             <button className='button nav-button'  onClick={()=>handlePrevNext('next')} disabled={page >= articles[0].total_count / 5}>next</button>
         </div>

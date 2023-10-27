@@ -30,11 +30,11 @@ export default function SingleArticle(){
    if (isErr)return <ErrorPage/>
 
    return (
-    <div>
+    <div className='single-article'>
         <h2>{title}</h2>
-        <p>by {author}</p>
+        <img className='single-article-img' src={article_img_url}/>
         <p>{body}</p>
-        <img src={article_img_url}/>
+        <p>by {author}</p>
         <h3>Do you like this article?</h3>
         <Voting id={article_id} votes={votes} patchingTo={'articles'}/>
         <ArticleComments />

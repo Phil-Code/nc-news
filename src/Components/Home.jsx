@@ -24,7 +24,7 @@ export default function Home(){
             newParams.set('order', 'desc')
             setSearchParams(newParams)
         }
-        fetchArticles(page, 5, topic, order, sortBy)
+        fetchArticles(page, 6, topic, order, sortBy)
         .then((result)=>{
             setArticles(result);
             setIsLoading(false);
@@ -42,7 +42,7 @@ export default function Home(){
     if (isErr)return <ErrorPage/>
     return (
         <div>
-            <TopicLinks/>
+            <TopicLinks className='large-topic-link'/>
             <ListArticles  articles={articles}/>
         </div>
     )

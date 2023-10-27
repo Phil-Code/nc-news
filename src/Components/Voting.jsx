@@ -20,9 +20,9 @@ export default function Voting({id, votes, patchingTo}){
     return (
         
         <div className="vote-button-container">
-            <button className="button vote-button" disabled={localLikes < 0} onClick={()=>handleLikes(id, 'minus', setLocalLikes, patchingTo, setErr)}>don't like</button>
+            <button className="button vote-button minus" disabled={localLikes < 0} onClick={()=>handleLikes(id, 'minus', setLocalLikes, patchingTo, setErr)}>don't like</button>
             <p className="vote-display">{localLikes + votes}</p>
-            <button className="button vote-button" disabled={localLikes > 0} onClick={()=>handleLikes(id, 'plus', setLocalLikes, patchingTo, setErr)}>like</button>
+            <button className="button vote-button plus" disabled={localLikes > 0} onClick={()=>handleLikes(id, 'plus', setLocalLikes, patchingTo, setErr)}>like</button>
          </div>
         
     )

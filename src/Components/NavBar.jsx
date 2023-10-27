@@ -4,10 +4,8 @@ import LoginBar from "./LoginBar"
 export default function NavBar(){
 
     return (
-        <div>
-            <Link to='/'>
-                <h1>NC News</h1>
-            </Link>
+        <div className="nav-bar">
+            <Link className="title" to='/'>NC News</Link>
             <LoginBar/>
         </div>
     )

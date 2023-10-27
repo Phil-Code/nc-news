@@ -34,13 +34,12 @@ export default function LoginBar(){
     
     return (
         <div className="login-bar">
-           <p> logged in as {login}</p>
+            <p> logged in as {login}</p>
            {login === 'Guest' && <form onSubmit={handleLogin}>
-            <label htmlFor="login">username (try grumpy19): </label>
-            <input value={input} onChange={(e)=>setInput(e.target.value)} id='login' type="text" />
+            <input placeholder="try grumpy19" value={input} onChange={(e)=>setInput(e.target.value)} id='login' type="text" />
             {invalidLogin? <p>username not found</p> : <></>}
            </form>}
-           {login !== 'Guest' && <button onClick={()=>setLogin('Guest')}>logout</button>}
+           {login !== 'Guest' && <button className="button login-button" onClick={()=>setLogin('Guest')}>logout</button>}
         </div>
     )
 }

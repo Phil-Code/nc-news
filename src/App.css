@@ -140,12 +140,22 @@ justify-self: flex-end;
   flex-direction: column;
   justify-content: space-between;
 }
-
+.add-comment-button{
+  padding: 15px 10px;
+  border-radius: 4px;
+  margin-top: 30px;
+}
+.comment-login-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .comment-form{
   display: flex;
   flex-direction: column;
   width: 75%;
   margin: auto;
+  align-items: center;
 }
 .button-container{
   display: flex;
@@ -170,15 +180,6 @@ justify-self: flex-end;
   border-radius: 5px;
   margin-top: 30px
 }
-.name-feedback{
-  height: 15px;
-}
-.name-feedback > p{
-  background-color: pink;
-  width: 50%;
-  align-self: center;
-  margin: auto
-}
 
 .comment-feedback{
   height: 15px;
@@ -186,7 +187,7 @@ justify-self: flex-end;
 
 .comment-feedback > p{
   background-color: pink;
-  width: 50%;
+  width: 100%;
   align-self: center;
   margin: auto
 }

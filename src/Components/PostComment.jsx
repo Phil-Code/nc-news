@@ -47,7 +47,7 @@ export default function PostComment({setIsPosting, setComments, setPostingErr, s
     }
 
     if (login === 'Guest'){
-        return  <div>
+        return  <div className="comment-login-container">
             <p>you must be logged in to add a comment</p>
             <LoginBar/>
         </div>
@@ -56,14 +56,14 @@ export default function PostComment({setIsPosting, setComments, setPostingErr, s
     return (
         <form onSubmit={handleSubmit} className="comment-form">
             <div className="comment-input">
-            <label htmlFor="body">Your comment: </label>
-            <input id='body' value={body} onChange={handleBodyChange} type="text" />
+            
+            <input style={{width: "500px"}} id='body' value={body} onChange={handleBodyChange} type="text" />
             </div>
             <div className="comment-feedback">
                 {isValidComment ? '' : <p>please write a longer comment</p>}
             </div>
             <div className="button-container">
-              <button type='submit' className="button submit-button">post comment</button>
+              <button type='submit' className="button submit-button">post</button>
               <button className="button cancel-submit" onClick={()=>setIsPosting(false)}>Cancel</button>
             </div>
         </form>

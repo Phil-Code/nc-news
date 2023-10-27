@@ -32,7 +32,7 @@ export default function ArticleComments(){
  
     return (
         <div className="comments-list">
-            {isPosting? <PostComment setCommentCount={setCommentCount} setPostingErr={setPostingErr} setComments={setComments} setIsPosting={setIsPosting}/> : <><button onClick={()=>setIsPosting(true)}>add a comment</button> </>}
+            {isPosting? <PostComment setCommentCount={setCommentCount} setPostingErr={setPostingErr} setComments={setComments} setIsPosting={setIsPosting}/> : <><button className="button add-comment-button" onClick={()=>setIsPosting(true)}>add a comment</button> </>}
             <h4>Comments</h4>
             {postingErr? <p style={{backgroundColor: 'pink'}}>sorry, it looks as though we can't add your comment right now, please try again later</p> : ''}
             {comments.map(({author, votes, body, comment_id})=>{

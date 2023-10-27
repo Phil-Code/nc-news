@@ -4,7 +4,7 @@ nc-news is a React app built on top of a back-end news api project. The app is h
 
 # url to a working example of the app
 
-https://github.com/Phil-Code/be-nc-news 
+https://phil-code-nc-news.netlify.app
 
 # GitHub links for borth parts of the project
 
